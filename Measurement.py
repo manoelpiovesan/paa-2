@@ -10,9 +10,10 @@ from Utils import Utils
 class Measurement:
     def __init__(self):
         self.algorithms = SortingAlgorithms()
-        self.testLengthCases = [124, 256, 512, 1024, 2048, 4096] # basta adicionar os casos de teste aqui para que sejam testados
-        self.methods = [self.algorithms.bubbleSort, self.algorithms.selectionSort] # basta adicionar os métodos de ordenação aqui para que sejam testados
-        self.testComplexityCases = [Utils.worstCaseArrayByLength, Utils.averageCaseArrayByLength, Utils.bestCaseArrayByLength]
+        self.lengthCasesToBeTested = [124, 256, 512, 1024, 2048, 4096] # basta adicionar os casos de teste aqui para que sejam testados
+        self.methodsToBeTested = [self.algorithms.bubbleSort, self.algorithms.selectionSort] # basta adicionar os métodos de ordenação aqui para que sejam testados
+        self.complexityCasesToBeTested = [Utils.worstCaseArrayByLength, Utils.averageCaseArrayByLength, Utils.bestCaseArrayByLength] 
+        # adicionar na classe Utils novas formas de gerar Arrays, e adicionar aqui para que sejam testados.
     #
     # Método principal para medir os métodos de ordenação.
     # Os metodos são iterados para cada caso de teste e método, com base no construtor desta classe.
@@ -21,15 +22,15 @@ class Measurement:
         algorithms = SortingAlgorithms()
         
         # Itera sobre os casos de teste.
-        for lengthCase in self.testLengthCases:
+        for lengthCase in self.lengthCasesToBeTested:
             print("-----------------------------------------------------------------------------")
             print("---------------------------CASO DE", lengthCase, "ELEMENTOS---------------------------")
             print("-----------------------------------------------------------------------------")
-            for complexityCase in self.testComplexityCases:
+            for complexityCase in self.complexityCasesToBeTested:
                 arr = complexityCase(lengthCase)
             
                 # Itera sobre os métodos de ordenação.
-                for method in self.methods:
+                for method in self.methodsToBeTested:
                     print("Metodo: ", method.__name__)
                     print("Caso: ", complexityCase.__name__)
                     result = method(arr.copy())
