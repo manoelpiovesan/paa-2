@@ -55,4 +55,18 @@ class Utils:
         for i in range(length):
             arr.append(i+1)
         return arr
-        
+    
+    #
+    #
+    #
+    @staticmethod
+    def getCaseTitle(name):
+        match name:
+            case "bestCaseArrayByLength":
+                return "Melhor caso"
+            case "averageCaseArrayByLength":
+                return "Caso médio"
+            case "worstCaseArrayByLength":
+                return "Pior caso"
+            case _:
+                return "Caso não identificado"

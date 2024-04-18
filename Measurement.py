@@ -28,7 +28,7 @@ class Measurement:
             
             for complexityCase in self.complexityCasesToBeTested:
                 arr = complexityCase(lengthCase) 
-                resultsByComplexityCase = {"complexityCase": complexityCase.__name__, "lengthCase": lengthCase, "results": []}
+                resultsByComplexityCase = {"complexityCase": Utils.getCaseTitle(complexityCase.__name__), "lengthCase": lengthCase, "results": []}
 
                 for method in self.methodsToBeTested:
                     result = method(arr.copy())
