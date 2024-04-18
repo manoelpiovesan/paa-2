@@ -1,5 +1,6 @@
 from SortingAlgorithms import SortingAlgorithms
 from Utils import Utils
+from Graph import Graph 
 #
 # Classe principal para medir os métodos de ordenação, comparando o número de iterações, comparações e trocas.
 #
@@ -10,7 +11,7 @@ from Utils import Utils
 class Measurement:
     def __init__(self):
         self.algorithms = SortingAlgorithms()
-        self.lengthCasesToBeTested = [124, 256, 512, 1024, 2048, 4096] # basta adicionar os casos de teste aqui para que sejam testados
+        self.lengthCasesToBeTested = [124, 256, 512, 1024, 2048, 4096, 8192] # basta adicionar novos tamanho de arrays aqui para que sejam testados
         self.methodsToBeTested = [self.algorithms.bubbleSort, self.algorithms.selectionSort] # basta adicionar os métodos de ordenação aqui para que sejam testados
         self.complexityCasesToBeTested = [Utils.worstCaseArrayByLength, Utils.averageCaseArrayByLength, Utils.bestCaseArrayByLength] 
         # adicionar na classe Utils novas formas de gerar Arrays, e adicionar aqui para que sejam testados.
@@ -26,19 +27,35 @@ class Measurement:
             print("-----------------------------------------------------------------------------")
             print("---------------------------CASO DE", lengthCase, "ELEMENTOS---------------------------")
             print("-----------------------------------------------------------------------------")
+            
             for complexityCase in self.complexityCasesToBeTested:
                 arr = complexityCase(lengthCase)
-            
-                # Itera sobre os métodos de ordenação.
+                resultsByComplexityCase = {"complexityCase": complexityCase.__name__, "lengthCase": lengthCase, "results": []}
+
                 for method in self.methodsToBeTested:
-                    print("Metodo: ", method.__name__)
-                    print("Caso: ", complexityCase.__name__)
                     result = method(arr.copy())
-                    print("Iteracoes: ", result["iterations"])
-                    print("Comparacoes: ", result["comparisons"])
-                    print("Trocas: ", result["swaps"])
-                    print("\n\n")
-            
+                    result["method"] = method.__name__
+                    resultsByComplexityCase["results"].append(result)                  
+                    self._printInfo(result)
+
+                # Gráfico de trocas por método de ordenação
+                Graph.barGraphForSwaps(resultsByComplexityCase)    
+                # Gráfico de comparações por método de ordenação
+                Graph.barGraphForComparisons(resultsByComplexityCase)
+                # Gráfico de iterações por método de ordenação
+                Graph.barGraphForIterations(resultsByComplexityCase)            
+
+
+    #
+    # Método privado para imprimir as informações de cada método de ordenação.
+    #
+    def _printInfo(self, result):
+        print("Metodo: ", result["method"])
+        print("Iteracoes: ", result["iterations"])
+        print("Comparacoes: ", result["comparisons"])
+        print("Trocas: ", result["swaps"])
+        print("\n\n")
+    
 if __name__ == "__main__":
     m = Measurement()
     m.main()

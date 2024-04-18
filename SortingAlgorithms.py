@@ -64,3 +64,5 @@ class SortingAlgorithms:
             raise Exception(exception)
         else: 
             return {"iterations": self.iterations, "comparisons": self.comparisons, "swaps": self.swaps}
+    
+    
