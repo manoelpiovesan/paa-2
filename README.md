@@ -3,6 +3,8 @@
 As alterações devem ser feitas em branches separadas para não quebrar o código.
 Os commits na main estão desativados. Crie uma branch a partir da main para fazer alterações no código.
 
+Na aba "Projects" está o Kanban (trello) do trabalho.
+
 
 ### 📜 Tarefas
 
