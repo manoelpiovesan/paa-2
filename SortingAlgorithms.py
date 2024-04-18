@@ -11,7 +11,8 @@ class SortingAlgorithms:
         self.swaps = 0
     
     # Metodos de incremento (tá meio redundante mas depois pode ser adicionado mais coisas quando for incrementar um dos parametros)
-    # Usar os metodos para incrementar os parametros de contagem em cada metodo de ordenação
+    # Usar os metodos para incrementar os parametros de contagem em cada metodo de ordenação.
+    # 🔴 Atenção para incrementar os parametros corretos em cada metodo. Verificar o local correto para incrementar.
     def incrementIterations(self):
         self.iterations += 1
     
