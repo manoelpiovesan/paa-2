@@ -13,16 +13,23 @@ class Measurement:
         self.testCases = [10, 100, 1000, 5000, 10000] # basta adicionar os casos de teste aqui para que sejam testados
         self.methods = [self.algorithms.bubbleSort, self.algorithms.selectionSort] # basta adicionar os métodos de ordenação aqui para que sejam testados
 
-    
+    #
+    # Método principal para medir os métodos de ordenação.
+    # Os metodos são iterados para cada caso de teste e método, com base no construtor desta classe.
+    #
     def main(self):
         algorithms = SortingAlgorithms()
+        
+        # Itera sobre os casos de teste.
         for i in self.testCases:
             arr = Utils.WorstCaseArrayByLength(i) # Pior caso (pode trocar dps para melhor caso, caso médio, etc)
             print("-----------------------------------------------------------------------------")
             print("---------------------------CASO DE", i, "ELEMENTOS---------------------------")
             print("-----------------------------------------------------------------------------")
+            
+            # Itera sobre os métodos de ordenação.
             for method in self.methods:
-                print("Método: ", method.__name__)
+                print("Metodo: ", method.__name__)
                 result = method(arr.copy())
                 print("Iteracoes: ", result["iterations"])
                 print("Comparacoes: ", result["comparisons"])

@@ -1,3 +1,4 @@
+from Utils import Utils
 class SortingAlgorithms:
     def __init__(self):
         self.iterations = 0 # Iterações
@@ -37,7 +38,12 @@ class SortingAlgorithms:
                     self.incrementComparisons()
                     arr[j], arr[j+1] = arr[j+1], arr[j]
                     self.incrementSwaps()
-        return {"iterations": self.iterations, "comparisons": self.comparisons, "swaps": self.swaps}
+                    
+        if (Utils.isSorted(arr) == False):
+            exception = "Array não está ordenado."
+            raise Exception(exception)
+        else: 
+            return {"iterations": self.iterations, "comparisons": self.comparisons, "swaps": self.swaps}
     
     # Selection Sort
     def selectionSort(self, arr):
@@ -52,4 +58,9 @@ class SortingAlgorithms:
                     min_idx = j
             arr[i], arr[min_idx] = arr[min_idx], arr[i]
             self.incrementSwaps()
-        return {"iterations": self.iterations, "comparisons": self.comparisons, "swaps": self.swaps}
+            
+        if (Utils.isSorted(arr) == False):
+            exception = "Array não está ordenado."
+            raise Exception(exception)
+        else: 
+            return {"iterations": self.iterations, "comparisons": self.comparisons, "swaps": self.swaps}
