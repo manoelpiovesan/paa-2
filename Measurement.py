@@ -1,10 +1,12 @@
-# Na classe principal seria interessante que chamassemos os métodos de uma classe externa que contenha
-# os métodos de ordenação. Assim, a classe principal ficaria mais limpa e organizada.
-
-# Aqui fariamos a medição de memória e tempo de execução dos métodos de ordenação.
 from SortingAlgorithms import SortingAlgorithms
 from Utils import Utils
-
+#
+# Classe principal para medir os métodos de ordenação, comparando o número de iterações, comparações e trocas.
+#
+# Para adicionar mais métodos de ordenação, basta criar um método novo na classe SortingAlgorithms e adicionar o método na lista self.methods.
+# Atenção para o retorno esperado do método de ordenação, que deve ser um map com as chaves "iterations", "comparisons" e "swaps".
+# Para adicionar mais casos de teste, basta adicionar o tamanho do array na lista self.testCases.
+#
 class Measurement:
     def __init__(self):
         self.algorithms = SortingAlgorithms()
