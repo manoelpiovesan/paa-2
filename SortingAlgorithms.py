@@ -6,7 +6,7 @@ class SortingAlgorithms:
         self.swaps = 0 # Trocas
     
     # Deve ser chamado antes de cada metodo de ordenação para zerar os contadores.
-    def clearCounters(self):
+    def _clearCounters(self):
         self.iterations = 0
         self.comparisons = 0
         self.swaps = 0
@@ -14,13 +14,13 @@ class SortingAlgorithms:
     # Metodos de incremento (tá meio redundante mas depois pode ser adicionado mais coisas quando for incrementar um dos parametros)
     # Usar os metodos para incrementar os parametros de contagem em cada metodo de ordenação.
     # 🔴 Atenção para incrementar os parametros corretos em cada metodo. Verificar o local correto para incrementar.
-    def incrementIterations(self):
+    def _incrementIterations(self):
         self.iterations += 1
     
-    def incrementComparisons(self):
+    def _incrementComparisons(self):
         self.comparisons += 1
     
-    def incrementSwaps(self):
+    def _incrementSwaps(self):
         self.swaps += 1
     
     #
@@ -29,38 +29,42 @@ class SortingAlgorithms:
     
     # Bubble Sort 
     def bubbleSort(self, arr):
-        self.clearCounters()
+        self._clearCounters()
         n = len(arr)
         for i in range(n):
             for j in range(0, n-i-1):
-                self.incrementIterations()
+                self._incrementIterations()
                 if arr[j] > arr[j+1]:
-                    self.incrementComparisons()
+                    self._incrementComparisons()
                     arr[j], arr[j+1] = arr[j+1], arr[j]
-                    self.incrementSwaps()
+                    self._incrementSwaps()
                     
-        if (Utils.isSorted(arr) == False):
-            exception = "Array não está ordenado."
-            raise Exception(exception)
-        else: 
-            return {"iterations": self.iterations, "comparisons": self.comparisons, "swaps": self.swaps}
+        # Usar esse método para retornar o array se ele estiver ordenado.
+        return self._returnArrayIfSorted(arr)
     
     # Selection Sort
     def selectionSort(self, arr):
-        self.clearCounters()
+        self._clearCounters()
         n = len(arr)
         for i in range(n):
             min_idx = i
             for j in range(i+1, n):
-                self.incrementIterations()
+                self._incrementIterations()
                 if arr[j] < arr[min_idx]:
-                    self.incrementComparisons()
+                    self._incrementComparisons()
                     min_idx = j
             arr[i], arr[min_idx] = arr[min_idx], arr[i]
-            self.incrementSwaps()
-            
+            self._incrementSwaps()
+        
+        return self._returnArrayIfSorted(arr) 
+    
+    #
+    # Usar esse método para retornar o array se ele estiver ordenado.
+    # Se não estiver, ele lança uma exceção.
+    #
+    def _returnArrayIfSorted(self, arr):
         if (Utils.isSorted(arr) == False):
             exception = "Array não está ordenado."
             raise Exception(exception)
-        else: 
+        else:
             return {"iterations": self.iterations, "comparisons": self.comparisons, "swaps": self.swaps}    
