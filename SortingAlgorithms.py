@@ -63,6 +63,4 @@ class SortingAlgorithms:
             exception = "Array não está ordenado."
             raise Exception(exception)
         else: 
-            return {"iterations": self.iterations, "comparisons": self.comparisons, "swaps": self.swaps}
-    
-    
+            return {"iterations": self.iterations, "comparisons": self.comparisons, "swaps": self.swaps}    

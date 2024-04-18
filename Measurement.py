@@ -24,19 +24,17 @@ class Measurement:
         
         # Itera sobre os casos de teste.
         for lengthCase in self.lengthCasesToBeTested:
-            print("-----------------------------------------------------------------------------")
-            print("---------------------------CASO DE", lengthCase, "ELEMENTOS---------------------------")
-            print("-----------------------------------------------------------------------------")
+            self._printLengthCase(lengthCase) # printando o caso de teste atual no console
             
             for complexityCase in self.complexityCasesToBeTested:
-                arr = complexityCase(lengthCase)
+                arr = complexityCase(lengthCase) 
                 resultsByComplexityCase = {"complexityCase": complexityCase.__name__, "lengthCase": lengthCase, "results": []}
 
                 for method in self.methodsToBeTested:
                     result = method(arr.copy())
-                    result["method"] = method.__name__
-                    resultsByComplexityCase["results"].append(result)                  
-                    self._printInfo(result)
+                    result["method"] = method.__name__ # adicionando o nome do método de ordenação no resultado
+                    resultsByComplexityCase["results"].append(result) # adicionando o resultado na lista de resultados                  
+                    self._printInfo(result) # printando as informações do método de ordenação atual no console
 
                 # Gráfico de trocas por método de ordenação
                 Graph.barGraphForSwaps(resultsByComplexityCase)    
@@ -55,6 +53,11 @@ class Measurement:
         print("Comparacoes: ", result["comparisons"])
         print("Trocas: ", result["swaps"])
         print("\n\n")
+
+    def _printLengthCase(self, lengthCase):
+        print("-----------------------------------------------------------------------------")
+        print("---------------------------CASO DE", lengthCase, "ELEMENTOS---------------------------")
+        print("-----------------------------------------------------------------------------")
     
 if __name__ == "__main__":
     m = Measurement()
