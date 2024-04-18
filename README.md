@@ -10,10 +10,10 @@ Na aba "Projects" está o Kanban (trello) do trabalho.
 
 - [x] Contagem de iterações (trocas, comparações e outros)
 
-- [ ] Gerar gráfico com os resultados
-    - [ ] Por tamanho do array: comparar métodos x numero de trocas (gráfico de barras)
-    - [ ] Por tamanho do array: comparar métodos x numero de iteracoes (gráfico de barras)
-    - [ ] Por tamanho do array: comparar métodos x numero de comparacoes (gráfico de barras)
+- [x] Gerar gráfico com os resultados
+    - [x] Por tamanho do array: comparar métodos x numero de trocas (gráfico de barras)
+    - [x] Por tamanho do array: comparar métodos x numero de iteracoes (gráfico de barras)
+    - [x] Por tamanho do array: comparar métodos x numero de comparacoes (gráfico de barras)
 
 - [ ] Medição de uso de memória (psutil: https://pypi.org/project/psutil/)
 
