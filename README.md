@@ -6,12 +6,19 @@ Os commits na main estão desativados. Crie uma branch a partir da main para faz
 
 ### 📜 Tarefas
 
-- [ ] Contagem de iterações (trocas, comparações e outros)
+- [x] Contagem de iterações (trocas, comparações e outros)
+
+- [ ] Gerar gráfico com os resultados
+    - [ ] Por tamanho do array: comparar métodos x numero de trocas (gráfico de barras)
+    - [ ] Por tamanho do array: comparar métodos x numero de iteracoes (gráfico de barras)
+    - [ ] Por tamanho do array: comparar métodos x numero de comparacoes (gráfico de barras)
+
 - [ ] Medição de uso de memória (psutil: https://pypi.org/project/psutil/)
+
 - [ ] Adicionar métodos de ordenação
     - [ ] Bitonic Sort
     - [ ] Merge Sort
-    - [ ] Bubble Sort
+    - [x] Bubble Sort
     - [ ] Insertion Sort
     - [ ] Shell Sort
     - [ ] Heap Sort
@@ -23,4 +30,4 @@ Os commits na main estão desativados. Crie uma branch a partir da main para faz
     - [ ] Odd-Even Sort
     - [ ] Tim Sort
     - [ ] Binary Insertion Sort
-    - [ ] Selection Sort
+    - [x] Selection Sort
