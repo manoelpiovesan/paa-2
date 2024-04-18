@@ -57,7 +57,7 @@ class Utils:
         return arr
     
     #
-    #
+    # Retorna o título do caso de teste.
     #
     @staticmethod
     def getCaseTitle(name):

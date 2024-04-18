@@ -14,7 +14,7 @@ class Graph:
             x.append(result["method"])
             y.append(result["swaps"])
 
-        description = "Caso: " + resultsByComplexityCase["complexityCase"] + " - Tamanho do array: " + str(resultsByComplexityCase["lengthCase"])
+        description = resultsByComplexityCase["complexityCase"] + " para " + str(resultsByComplexityCase["lengthCase"]) + " elementos."
 
         plt.bar(x, y)
         plt.xlabel("Métodos")
@@ -35,7 +35,7 @@ class Graph:
             x.append(result["method"])
             y.append(result["comparisons"])
         
-        description = "Caso: " + resultsByComplexityCase["complexityCase"] + " - Tamanho do array: " + str(resultsByComplexityCase["lengthCase"])
+        description = resultsByComplexityCase["complexityCase"] + " para " + str(resultsByComplexityCase["lengthCase"]) + " elementos."
 
         plt.bar(x, y)
         plt.xlabel("Métodos")
@@ -56,7 +56,7 @@ class Graph:
             x.append(result["method"])
             y.append(result["iterations"])
         
-        description = "Caso: " + resultsByComplexityCase["complexityCase"] + " - Tamanho do array: " + str(resultsByComplexityCase["lengthCase"])
+        description = resultsByComplexityCase["complexityCase"] + " para " + str(resultsByComplexityCase["lengthCase"]) + " elementos."
 
         plt.bar(x, y)
         plt.xlabel("Métodos")
