@@ -10,7 +10,7 @@ from Utils import Utils
 class Measurement:
     def __init__(self):
         self.algorithms = SortingAlgorithms()
-        self.testCases = [10, 100, 1000, 5000, 10000] # basta adicionar os casos de teste aqui para que sejam testados
+        self.testCases = [124, 256, 512, 1024, 2048, 4096] # basta adicionar os casos de teste aqui para que sejam testados
         self.methods = [self.algorithms.bubbleSort, self.algorithms.selectionSort] # basta adicionar os métodos de ordenação aqui para que sejam testados
 
     #
@@ -22,7 +22,7 @@ class Measurement:
         
         # Itera sobre os casos de teste.
         for i in self.testCases:
-            arr = Utils.WorstCaseArrayByLength(i) # Pior caso (pode trocar dps para melhor caso, caso médio, etc)
+            arr = Utils.worstCaseArrayByLength(i) # Pior caso (pode trocar dps para melhor caso, caso médio, etc)
             print("-----------------------------------------------------------------------------")
             print("---------------------------CASO DE", i, "ELEMENTOS---------------------------")
             print("-----------------------------------------------------------------------------")

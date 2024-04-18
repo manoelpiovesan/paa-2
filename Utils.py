@@ -23,7 +23,7 @@ class Utils:
     # Retorna o pior caso de um array de tamanho length.
     #
     @staticmethod
-    def WorstCaseArrayByLength(length):
+    def worstCaseArrayByLength(length):
         arr = []
         for i in range(length):
             arr.append(length-i)
