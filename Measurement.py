@@ -37,12 +37,12 @@ class Measurement:
                     self._printInfo(result) # printando as informações do método de ordenação atual no console
 
                 # Gráfico de trocas por método de ordenação
-                Graph.barGraphForSwaps(resultsByComplexityCase)    
+                #Graph.barGraphForSwaps(resultsByComplexityCase)    
                 # Gráfico de comparações por método de ordenação
-                Graph.barGraphForComparisons(resultsByComplexityCase)
+                #Graph.barGraphForComparisons(resultsByComplexityCase)
                 # Gráfico de iterações por método de ordenação
-                Graph.barGraphForIterations(resultsByComplexityCase)            
-
+                # Graph.barGraphForIterations(resultsByComplexityCase)            
+                Graph.barGraphForAll(resultsByComplexityCase)
 
     #
     # Método privado para imprimir as informações de cada método de ordenação.
