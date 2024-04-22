@@ -34,8 +34,8 @@ class SortingAlgorithms:
         for i in range(n):
             for j in range(0, n-i-1):
                 self._incrementIterations()
+                self._incrementComparisons()
                 if arr[j] > arr[j+1]:
-                    self._incrementComparisons()
                     arr[j], arr[j+1] = arr[j+1], arr[j]
                     self._incrementSwaps()
                     
@@ -50,8 +50,8 @@ class SortingAlgorithms:
             min_idx = i
             for j in range(i+1, n):
                 self._incrementIterations()
+                self._incrementComparisons()
                 if arr[j] < arr[min_idx]:
-                    self._incrementComparisons()
                     min_idx = j
             arr[i], arr[min_idx] = arr[min_idx], arr[i]
             self._incrementSwaps()
