@@ -12,12 +12,16 @@ class Measurement:
     def __init__(self):
         self.algorithms = SortingAlgorithms()
         self.lengthCasesToBeTested = [124, 256, 512, 1024, 2048, 4096, 8192] # basta adicionar novos tamanho de arrays aqui para que sejam testados
-        self.methodsToBeTested = [self.algorithms.bubbleSort, self.algorithms.selectionSort] # basta adicionar os métodos de ordenação aqui para que sejam testados
+        self.methodsToBeTested = [self.algorithms.bubbleSort, self.algorithms.selectionSort, self.algorithms.mergeSort,
+                                  self.algorithms.heapSort, self.algorithms.binaryinsertionSort, self.algorithms.combSort,
+                                  self.algorithms.shellSort, self.algorithms.radixSortLDS, self.algorithms.radixSortMDS,
+                                  self.algorithms.insertionSort, self.algorithms.timSort, self.algorithms.cocktailshakerSort,
+                                  self.algorithms.gnomeSort, self.algorithms.oddevenSort, self.algorithms.quickSort] # basta adicionar os métodos de ordenação aqui para que sejam testados
         self.complexityCasesToBeTested = [Utils.worstCaseArrayByLength, Utils.averageCaseArrayByLength, Utils.bestCaseArrayByLength] 
         # adicionar na classe Utils novas formas de gerar Arrays, e adicionar aqui para que sejam testados.
     #
     # Método principal para medir os métodos de ordenação.
-    # Os metodos são iterados para cada caso de teste e método, com base no construtor desta classe.
+    # Os métodos são iterados para cada caso de teste e método, com base no construtor desta classe.
     #
     def main(self):
         algorithms = SortingAlgorithms()
