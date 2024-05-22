@@ -1,5 +1,5 @@
-from Utils import Utils
 import psutil
+from Utils import Utils
 
 class SortingAlgorithms:
     def __init__(self):
@@ -7,13 +7,13 @@ class SortingAlgorithms:
         self.comparisons = 0  # Comparações
         self.swaps = 0  # Trocas
 
-    # Deve ser chamado antes de cada metodo de ordenação para zerar os contadores.
+    # Deve ser chamado antes de cada método de ordenação para zerar os contadores.
     def _clearCounters(self):
         self.iterations = 0
         self.comparisons = 0
         self.swaps = 0
 
-    # Metodos de incremento
+    # Métodos de incremento
     def _incrementIterations(self):
         self.iterations += 1
 
@@ -32,16 +32,20 @@ class SortingAlgorithms:
             "comparisons": self.comparisons,
             "swaps": self.swaps,
         }
+
     def _get_memory_usage(self):
         process = psutil.Process()
         return process.memory_info().rss / (1024 ** 2)  # Convertendo para megabytes
 
     def _get_cpu_usage(self):
-        return psutil.cpu_percent()
-    # Métodos de ordenação
+        return psutil.cpu_percent(interval=1)  # Percentual de uso da CPU
 
+    # Métodos de ordenação
     def bubbleSort(self, arr):
         self._clearCounters()
+        initial_memory = self._get_memory_usage()
+        initial_cpu = self._get_cpu_usage()
+
         n = len(arr)
         for i in range(n):
             for j in range(0, n - i - 1):
@@ -50,19 +54,28 @@ class SortingAlgorithms:
                 if arr[j] > arr[j + 1]:
                     arr[j], arr[j + 1] = arr[j + 1], arr[j]
                     self._incrementSwaps()
+
         final_memory = self._get_memory_usage()
         final_cpu = self._get_cpu_usage()
+
         memory_consumption = final_memory - initial_memory
         cpu_consumption = final_cpu - initial_cpu
+
         return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
     def mergeSort(self, arr):
         self._clearCounters()
+        initial_memory = self._get_memory_usage()
+        initial_cpu = self._get_cpu_usage()
+
         sorted_arr = self._mergeSort(arr)
+
         final_memory = self._get_memory_usage()
         final_cpu = self._get_cpu_usage()
+
         memory_consumption = final_memory - initial_memory
         cpu_consumption = final_cpu - initial_cpu
+
         return self._returnArrayIfSorted(sorted_arr), memory_consumption, cpu_consumption
 
     def _mergeSort(self, arr):
@@ -71,12 +84,13 @@ class SortingAlgorithms:
         mid = len(arr) // 2
         left_half = self._mergeSort(arr[:mid])
         right_half = self._mergeSort(arr[mid:])
-        return self._merge(arr, left_half, right_half)
+        return self._mergeS(arr, left_half, right_half, len(left_half), len(right_half))
 
-    def _merge(self, arr, left, right):
+
+    def _mergeS(self, arr, left, right, len_left, len_right):
         merged = []
         left_idx, right_idx = 0, 0
-        while left_idx < len(left) and right_idx < len(right):
+        while left_idx < len_left and right_idx < len_right:
             if left[left_idx] < right[right_idx]:
                 merged.append(left[left_idx])
                 left_idx += 1
@@ -87,10 +101,22 @@ class SortingAlgorithms:
         merged.extend(right[right_idx:])
         return merged
 
+    
+
     def heapSort(self, arr):
         self._clearCounters()
+        initial_memory = self._get_memory_usage()
+        initial_cpu = self._get_cpu_usage()
+
         self._heapSort(arr)
-        return self._returnArrayIfSorted(arr)
+
+        final_memory = self._get_memory_usage()
+        final_cpu = self._get_cpu_usage()
+
+        memory_consumption = final_memory - initial_memory
+        cpu_consumption = final_cpu - initial_cpu
+
+        return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
     def _heapSort(self, arr):
         n = len(arr)
@@ -100,6 +126,7 @@ class SortingAlgorithms:
             arr[i], arr[0] = arr[0], arr[i]
             self._incrementSwaps()
             self._heapify(arr, i, 0)
+
 
     def _heapify(self, arr, n, i):
         largest = i
@@ -118,9 +145,31 @@ class SortingAlgorithms:
             self._heapify(arr, n, largest)
 
     def binaryInsertionSort(self, arr):
-        self._clearCounters()
-        self._binaryInsertionSort(arr)
-        return self._returnArrayIfSorted(arr)
+            self._clearCounters()
+
+            initial_memory = self._get_memory_usage()
+            initial_cpu = self._get_cpu_usage()
+
+            for i in range(1, len(arr)):
+                key = arr[i]
+                left, right = 0, i - 1
+                while left <= right:
+                    mid = (left + right) // 2
+                    self._incrementIterations()
+                    if arr[mid] < key:
+                        left = mid + 1
+                    else:
+                        right = mid - 1
+                arr[left+1:i+1] = arr[left:i]
+                arr[left] = key
+                self._incrementSwaps()
+            final_memory = self._get_memory_usage()
+            final_cpu = self._get_cpu_usage()
+
+            memory_consumption = final_memory - initial_memory
+            cpu_consumption = final_cpu - initial_cpu
+
+            return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
     def _binaryInsertionSort(self, arr):
         for i in range(1, len(arr)):
@@ -158,8 +207,18 @@ class SortingAlgorithms:
 
     def combSort(self, arr):
         self._clearCounters()
+        initial_memory = self._get_memory_usage()
+        initial_cpu = self._get_cpu_usage()
+
         self._combSort(arr)
-        return self._returnArrayIfSorted(arr)
+
+        final_memory = self._get_memory_usage()
+        final_cpu = self._get_cpu_usage()
+
+        memory_consumption = final_memory - initial_memory
+        cpu_consumption = final_cpu - initial_cpu
+
+        return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
     def _combSort(self, arr):
         gap = len(arr)
@@ -180,8 +239,18 @@ class SortingAlgorithms:
 
     def shellSort(self, arr):
         self._clearCounters()
+        initial_memory = self._get_memory_usage()
+        initial_cpu = self._get_cpu_usage()
+
         self._shellSort(arr)
-        return self._returnArrayIfSorted(arr)
+
+        final_memory = self._get_memory_usage()
+        final_cpu = self._get_cpu_usage()
+
+        memory_consumption = final_memory - initial_memory
+        cpu_consumption = final_cpu - initial_cpu
+
+        return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
     def _shellSort(self, arr):
         length = len(arr)
@@ -199,10 +268,21 @@ class SortingAlgorithms:
                 arr[j] = current_element
             gap //= 2
 
+
     def radixSortLDS(self, arr):
         self._clearCounters()
+        initial_memory = self._get_memory_usage()
+        initial_cpu = self._get_cpu_usage()
+
         self._radixSortLDS(arr)
-        return self._returnArrayIfSorted(arr)
+
+        final_memory = self._get_memory_usage()
+        final_cpu = self._get_cpu_usage()
+
+        memory_consumption = final_memory - initial_memory
+        cpu_consumption = final_cpu - initial_cpu
+
+        return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
     def _radixSortLDS(self, arr):
         max_num = max(arr)
@@ -236,8 +316,18 @@ class SortingAlgorithms:
 
     def radixSortMDS(self, arr):
         self._clearCounters()
+        initial_memory = self._get_memory_usage()
+        initial_cpu = self._get_cpu_usage()
+
         self._radixSortMDS(arr)
-        return self._returnArrayIfSorted(arr)
+
+        final_memory = self._get_memory_usage()
+        final_cpu = self._get_cpu_usage()
+
+        memory_consumption = final_memory - initial_memory
+        cpu_consumption = final_cpu - initial_cpu
+
+        return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
     def _radixSortMDS(self, arr):
         max_num = max(arr)
@@ -266,8 +356,12 @@ class SortingAlgorithms:
             arr[i] = aux[i]
             self._incrementIterations()
 
+
     def insertionSort(self, arr):
         self._clearCounters()
+        initial_memory = self._get_memory_usage()
+        initial_cpu = self._get_cpu_usage()
+
         for i in range(1, len(arr)):
             key = arr[i]
             j = i - 1
@@ -278,9 +372,21 @@ class SortingAlgorithms:
                 self._incrementComparisons()
                 self._incrementSwaps()
             arr[j + 1] = key
-        return self._returnArrayIfSorted(arr)
+
+        final_memory = self._get_memory_usage()
+        final_cpu = self._get_cpu_usage()
+
+        memory_consumption = final_memory - initial_memory
+        cpu_consumption = final_cpu - initial_cpu
+
+        return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
+
+
     def selectionSort(self, arr):
         self._clearCounters()
+        initial_memory = self._get_memory_usage()
+        initial_cpu = self._get_cpu_usage()
+
         for i in range(len(arr)):
             min_index = i
             for j in range(i+1, len(arr)):
@@ -290,42 +396,48 @@ class SortingAlgorithms:
                     min_index = j
             arr[i], arr[min_index] = arr[min_index], arr[i]
             self._incrementSwaps()
-        return self._returnArrayIfSorted(arr)
 
-    def binaryInsertionSort(self, arr):
-        self._clearCounters()
-        for i in range(1, len(arr)):
-            key = arr[i]
-            left, right = 0, i - 1
-            while left <= right:
-                mid = (left + right) // 2
-                self._incrementIterations()
-                if arr[mid] < key:
-                    left = mid + 1
-                else:
-                    right = mid - 1
-            arr[left+1:i+1] = arr[left:i]
-            arr[left] = key
-            self._incrementSwaps()
-        return self._returnArrayIfSorted(arr)
+        final_memory = self._get_memory_usage()
+        final_cpu = self._get_cpu_usage()
+
+        memory_consumption = final_memory - initial_memory
+        cpu_consumption = final_cpu - initial_cpu
+
+        return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
+
 
     def timSort(self, arr):
         self._clearCounters()
-        self._timSort(arr, len(arr))
-        return self._returnArrayIfSorted(arr)
+        initial_memory = self._get_memory_usage()
+        initial_cpu = self._get_cpu_usage()
 
-    def _timSort(self, arr, n):
+        sorted_arr, memory_consumption, cpu_consumption = self._timSort(arr.copy())
+
+        final_memory = self._get_memory_usage()
+        final_cpu = self._get_cpu_usage()
+
+        memory_consumption += final_memory - initial_memory
+        cpu_consumption += final_cpu - initial_cpu
+
+        return sorted_arr, memory_consumption, cpu_consumption
+
+    def _timSort(self, arr):
         min_run = 32
-        for i in range(0, n, min_run):
-            self._binaryInsertionSort(arr[i:min((i + min_run), n)])  # Corrected argument passing
+        for i in range(0, len(arr), min_run):
+            self._binaryInsertionSort(arr[i:min((i + min_run), len(arr))])  
         size = min_run
-        while size < n:
-            for left in range(0, n, 2 * size):
-                mid = min(n - 1, left + size - 1)
-                right = min((left + 2 * size - 1), (n - 1))
+        while size < len(arr):
+            for left in range(0, len(arr), 2 * size):
+                mid = min(len(arr) - 1, left + size - 1)
+                right = min((left + 2 * size - 1), (len(arr) - 1))
                 if mid < right:
                     self._merge(arr, left, mid, right)
             size = 2 * size
+        return {
+            "iterations": self.iterations,
+            "comparisons": self.comparisons,
+            "swaps": self.swaps
+        }
 
     def _merge(self, arr, l, m, r):
         len1, len2 = m - l + 1, r - m
@@ -336,8 +448,6 @@ class SortingAlgorithms:
             right.append(arr[m + 1 + i])
         i, j, k = 0, 0, l
         while i < len1 and j < len2:
-            self._incrementIterations()
-            self._incrementComparisons()
             if left[i] <= right[j]:
                 arr[k] = left[i]
                 i += 1
@@ -349,15 +459,17 @@ class SortingAlgorithms:
             arr[k] = left[i]
             k += 1
             i += 1
-            self._incrementSwaps()
         while j < len2:
             arr[k] = right[j]
             k += 1
             j += 1
-            self._incrementSwaps()
+
 
     def cocktailShakerSort(self, arr):
         self._clearCounters()
+        initial_memory = self._get_memory_usage()
+        initial_cpu = self._get_cpu_usage()
+
         n = len(arr)
         swapped = True
         start = 0
@@ -383,10 +495,20 @@ class SortingAlgorithms:
                     self._incrementSwaps()
                     swapped = True
             start += 1
-        return self._returnArrayIfSorted(arr)
+
+        final_memory = self._get_memory_usage()
+        final_cpu = self._get_cpu_usage()
+
+        memory_consumption = final_memory - initial_memory
+        cpu_consumption = final_cpu - initial_cpu
+
+        return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
     def gnomeSort(self, arr):
         self._clearCounters()
+        initial_memory = self._get_memory_usage()
+        initial_cpu = self._get_cpu_usage()
+
         n = len(arr)
         index = 0
         while index < n:
@@ -399,10 +521,20 @@ class SortingAlgorithms:
                 arr[index], arr[index - 1] = arr[index - 1], arr[index]
                 self._incrementSwaps()
                 index -= 1
-        return self._returnArrayIfSorted(arr)
+
+        final_memory = self._get_memory_usage()
+        final_cpu = self._get_cpu_usage()
+
+        memory_consumption = final_memory - initial_memory
+        cpu_consumption = final_cpu - initial_cpu
+
+        return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
     def oddEvenSort(self, arr):
         self._clearCounters()
+        initial_memory = self._get_memory_usage()
+        initial_cpu = self._get_cpu_usage()
+
         n = len(arr)
         sorted = False
         while not sorted:
@@ -421,13 +553,31 @@ class SortingAlgorithms:
                     arr[i], arr[i + 1] = arr[i + 1], arr[i]
                     self._incrementSwaps()
                     sorted = False
-        return self._returnArrayIfSorted(arr)
+
+        final_memory = self._get_memory_usage()
+        final_cpu = self._get_cpu_usage()
+
+        memory_consumption = final_memory - initial_memory
+        cpu_consumption = final_cpu - initial_cpu
+
+        return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
     def quickSort(self, arr, low, high):
         if low < high:
+            initial_memory = self._get_memory_usage()
+            initial_cpu = self._get_cpu_usage()
+
             pi = self._partition(arr, low, high)
             self.quickSort(arr, low, pi - 1)
             self.quickSort(arr, pi + 1, high)
+
+            final_memory = self._get_memory_usage()
+            final_cpu = self._get_cpu_usage()
+
+            memory_consumption = final_memory - initial_memory
+            cpu_consumption = final_cpu - initial_cpu
+
+            return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
     def _partition(self, arr, low, high):
         pivot = arr[high]
@@ -445,8 +595,18 @@ class SortingAlgorithms:
 
     def bitonicSort(self, arr):
         self._clearCounters()
+        initial_memory = self._get_memory_usage()
+        initial_cpu = self._get_cpu_usage()
+
         self._bitonicSort(arr, 0, len(arr), True)
-        return self._returnArrayIfSorted(arr)
+
+        final_memory = self._get_memory_usage()
+        final_cpu = self._get_cpu_usage()
+
+        memory_consumption = final_memory - initial_memory
+        cpu_consumption = final_cpu - initial_cpu
+
+        return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
     def _bitonicSort(self, arr, start, length, direction):
         if length > 1:

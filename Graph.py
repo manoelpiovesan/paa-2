@@ -1,15 +1,14 @@
 import matplotlib.pyplot as plt
 
 class Graph:
-
     #
     #
     #
     @staticmethod
     def barGraphForSwaps(resultsByComplexityCase):
         # Swaps
-        x = [] # Nome dos métodos
-        y = [] # Número de trocas
+        x = []  # Nome dos métodos
+        y = []  # Número de trocas
         for result in resultsByComplexityCase["results"]:
             x.append(result["method"])
             y.append(result["swaps"])
@@ -22,7 +21,7 @@ class Graph:
         plt.title("Trocas x Método de ordenação\n" + description)
         plt.grid()
         return plt.show()
-    
+
     #
     #
     #
@@ -34,7 +33,7 @@ class Graph:
         for result in resultsByComplexityCase["results"]:
             x.append(result["method"])
             y.append(result["comparisons"])
-        
+
         description = resultsByComplexityCase["complexityCase"] + " para " + str(resultsByComplexityCase["lengthCase"]) + " elementos."
 
         plt.bar(x, y)
@@ -43,7 +42,7 @@ class Graph:
         plt.title("Comparações x Método de ordenação\n" + description)
         plt.grid()
         return plt.show()
-    
+
     #
     #
     #
@@ -55,7 +54,7 @@ class Graph:
         for result in resultsByComplexityCase["results"]:
             x.append(result["method"])
             y.append(result["iterations"])
-        
+
         description = resultsByComplexityCase["complexityCase"] + " para " + str(resultsByComplexityCase["lengthCase"]) + " elementos."
 
         plt.bar(x, y)
@@ -64,9 +63,9 @@ class Graph:
         plt.title("Iterações x Método de ordenação\n" + description)
         plt.grid()
         return plt.show()
-    
+
     #
-    # 
+    #
     #
     @staticmethod
     def barGraphForAll(resultsByComplexityCase):
@@ -81,13 +80,13 @@ class Graph:
             yIterations.append(result["iterations"])
 
             xGeneric.append(result["method"])
-        
+
         description = resultsByComplexityCase["complexityCase"] + " para " + str(resultsByComplexityCase["lengthCase"]) + " elementos."
 
         fig, (swapsGraph, comparisonsGraph, iterationsGraph) = plt.subplots(3)
 
         swapsGraph.bar(xGeneric, ySwaps)
-        swapsGraph.set_title(description +"\n\nTrocas x Método de ordenação")
+        swapsGraph.set_title(description + "\n\nTrocas x Método de ordenação")
 
         comparisonsGraph.bar(xGeneric, yComparisons)
         comparisonsGraph.set_title("Comparações x Método de ordenação")
@@ -97,3 +96,45 @@ class Graph:
 
         plt.tight_layout()
         plt.show()
+
+    #
+    #
+    #
+    @staticmethod
+    def barGraphForCpu(resultsByComplexityCase):
+        # CPU usage
+        x = []
+        y = []
+        for result in resultsByComplexityCase["results"]:
+            x.append(result["method"])
+            y.append(result["cpu"])
+
+        description = resultsByComplexityCase["complexityCase"] + " para " + str(resultsByComplexityCase["lengthCase"]) + " elementos."
+
+        plt.bar(x, y)
+        plt.xlabel("Métodos")
+        plt.ylabel("Uso de CPU (%)")
+        plt.title("Uso de CPU x Método de ordenação\n" + description)
+        plt.grid()
+        return plt.show()
+
+    #
+    #
+    #
+    @staticmethod
+    def barGraphForMemory(resultsByComplexityCase):
+        # Memory usage
+        x = []
+        y = []
+        for result in resultsByComplexityCase["results"]:
+            x.append(result["method"])
+            y.append(result["memory"])
+
+        description = resultsByComplexityCase["complexityCase"] + " para " + str(resultsByComplexityCase["lengthCase"]) + " elementos."
+
+        plt.bar(x, y)
+        plt.xlabel("Métodos")
+        plt.ylabel("Uso de Memória (MB)")
+        plt.title("Uso de Memória x Método de ordenação\n" + description)
+        plt.grid()
+        return plt.show()
