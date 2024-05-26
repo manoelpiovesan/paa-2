@@ -1,4 +1,5 @@
 import psutil
+import os
 from Utils import Utils
 
 class SortingAlgorithms:
@@ -34,8 +35,8 @@ class SortingAlgorithms:
         }
 
     def _get_memory_usage(self):
-        process = psutil.Process()
-        return process.memory_info().rss / (1024 ** 2)  # Convertendo para megabytes
+        process = psutil.Process(os.getpid())
+        return process.memory_info().rss / (1024 * 1024)  # Convertendo para megabytes
 
  
     def _get_cpu_usage(self):
@@ -59,8 +60,8 @@ class SortingAlgorithms:
         final_memory = self._get_memory_usage()
         final_cpu = self._get_cpu_usage()
 
-        memory_consumption = final_memory
-        cpu_consumption = final_cpu
+        memory_consumption = abs(final_memory - initial_memory)
+        cpu_consumption = abs(final_cpu - initial_cpu)
 
         return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
@@ -74,8 +75,8 @@ class SortingAlgorithms:
         final_memory = self._get_memory_usage()
         final_cpu = self._get_cpu_usage()
 
-        memory_consumption = final_memory 
-        cpu_consumption = final_cpu
+        memory_consumption = abs(final_memory - initial_memory)
+        cpu_consumption = abs(final_cpu - initial_cpu)
 
         return self._returnArrayIfSorted(sorted_arr), memory_consumption, cpu_consumption
 
@@ -114,8 +115,8 @@ class SortingAlgorithms:
         final_memory = self._get_memory_usage()
         final_cpu = self._get_cpu_usage()
 
-        memory_consumption = final_memory 
-        cpu_consumption = final_cpu 
+        memory_consumption = abs(final_memory - initial_memory)
+        cpu_consumption = abs(final_cpu - initial_cpu)
 
         return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
@@ -167,8 +168,8 @@ class SortingAlgorithms:
             final_memory = self._get_memory_usage()
             final_cpu = self._get_cpu_usage()
 
-            memory_consumption = final_memory 
-            cpu_consumption = final_cpu 
+            memory_consumption = abs(final_memory - initial_memory)
+            cpu_consumption = abs(final_cpu - initial_cpu)
 
             return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
@@ -216,8 +217,8 @@ class SortingAlgorithms:
         final_memory = self._get_memory_usage()
         final_cpu = self._get_cpu_usage()
 
-        memory_consumption = final_memory 
-        cpu_consumption = final_cpu 
+        memory_consumption = abs(final_memory - initial_memory)
+        cpu_consumption = abs(final_cpu - initial_cpu)
 
         return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
@@ -248,8 +249,8 @@ class SortingAlgorithms:
         final_memory = self._get_memory_usage()
         final_cpu = self._get_cpu_usage()
 
-        memory_consumption = final_memory 
-        cpu_consumption = final_cpu 
+        memory_consumption = abs(final_memory - initial_memory)
+        cpu_consumption = abs(final_cpu - initial_cpu)
 
         return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
@@ -280,8 +281,8 @@ class SortingAlgorithms:
         final_memory = self._get_memory_usage()
         final_cpu = self._get_cpu_usage()
 
-        memory_consumption = final_memory 
-        cpu_consumption = final_cpu 
+        memory_consumption = abs(final_memory - initial_memory)
+        cpu_consumption = abs(final_cpu - initial_cpu)
 
         return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
@@ -325,8 +326,8 @@ class SortingAlgorithms:
         final_memory = self._get_memory_usage()
         final_cpu = self._get_cpu_usage()
 
-        memory_consumption = final_memory 
-        cpu_consumption = final_cpu 
+        memory_consumption = abs(final_memory - initial_memory)
+        cpu_consumption = abs(final_cpu - initial_cpu)
 
         return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
@@ -377,8 +378,8 @@ class SortingAlgorithms:
         final_memory = self._get_memory_usage()
         final_cpu = self._get_cpu_usage()
 
-        memory_consumption = final_memory 
-        cpu_consumption = final_cpu 
+        memory_consumption = abs(final_memory - initial_memory)
+        cpu_consumption = abs(final_cpu - initial_cpu)
 
         return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
@@ -401,8 +402,8 @@ class SortingAlgorithms:
         final_memory = self._get_memory_usage()
         final_cpu = self._get_cpu_usage()
 
-        memory_consumption = final_memory 
-        cpu_consumption = final_cpu 
+        memory_consumption = abs(final_memory - initial_memory)
+        cpu_consumption = abs(final_cpu - initial_cpu)
 
         return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
@@ -457,8 +458,8 @@ class SortingAlgorithms:
         final_memory = self._get_memory_usage()
         final_cpu = self._get_cpu_usage()
 
-        memory_consumption = final_memory 
-        cpu_consumption = final_cpu 
+        memory_consumption = abs(final_memory - initial_memory)
+        cpu_consumption = abs(final_cpu - initial_cpu)
 
         return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
@@ -509,8 +510,8 @@ class SortingAlgorithms:
         final_memory = self._get_memory_usage()
         final_cpu = self._get_cpu_usage()
 
-        memory_consumption = final_memory 
-        cpu_consumption = final_cpu 
+        memory_consumption = abs(final_memory - initial_memory)
+        cpu_consumption = abs(final_cpu - initial_cpu)
 
         return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
@@ -535,8 +536,8 @@ class SortingAlgorithms:
         final_memory = self._get_memory_usage()
         final_cpu = self._get_cpu_usage()
 
-        memory_consumption = final_memory 
-        cpu_consumption = final_cpu 
+        memory_consumption = abs(final_memory - initial_memory)
+        cpu_consumption = abs(final_cpu - initial_cpu) 
 
         return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
@@ -567,8 +568,8 @@ class SortingAlgorithms:
         final_memory = self._get_memory_usage()
         final_cpu = self._get_cpu_usage()
 
-        memory_consumption = final_memory 
-        cpu_consumption = final_cpu 
+        memory_consumption = abs(final_memory - initial_memory)
+        cpu_consumption = abs(final_cpu - initial_cpu)
 
         return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
@@ -586,8 +587,8 @@ class SortingAlgorithms:
         final_memory = self._get_memory_usage()
         final_cpu = self._get_cpu_usage()
 
-        memory_consumption = final_memory 
-        cpu_consumption = final_cpu 
+        memory_consumption = abs(final_memory - initial_memory)
+        cpu_consumption = abs(final_cpu - initial_cpu)
 
         return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
@@ -622,8 +623,8 @@ class SortingAlgorithms:
         final_memory = self._get_memory_usage()
         final_cpu = self._get_cpu_usage()
 
-        memory_consumption = final_memory
-        cpu_consumption = final_cpu
+        memory_consumption = abs(final_memory - initial_memory)
+        cpu_consumption = abs(final_cpu - initial_cpu)
 
         return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
