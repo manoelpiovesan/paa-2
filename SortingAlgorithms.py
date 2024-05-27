@@ -1,6 +1,7 @@
 import psutil
 import os
 from Utils import Utils
+import memory_profiler
 
 class SortingAlgorithms:
     def __init__(self):
@@ -43,6 +44,7 @@ class SortingAlgorithms:
         return psutil.cpu_percent(interval=1)  # Percentual de uso da CPU
 
     # Métodos de ordenação
+    @memory_profiler.profile
     def bubble(self, arr):
         self._clearCounters()
         initial_memory = self._get_memory_usage()
@@ -65,6 +67,7 @@ class SortingAlgorithms:
 
         return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
+    @memory_profiler.profile
     def merge(self, arr):
         self._clearCounters()
         initial_memory = self._get_memory_usage()
@@ -104,7 +107,7 @@ class SortingAlgorithms:
         return merged
 
     
-
+    @memory_profiler.profile
     def heap(self, arr):
         self._clearCounters()
         initial_memory = self._get_memory_usage()
@@ -146,6 +149,7 @@ class SortingAlgorithms:
             self._incrementSwaps()
             self._heapify(arr, n, largest)
 
+    @memory_profiler.profile
     def binaryIns(self, arr):
             self._clearCounters()
 
@@ -207,6 +211,7 @@ class SortingAlgorithms:
             self._incrementComparisons()
             return middle
 
+    @memory_profiler.profile
     def comb(self, arr):
         self._clearCounters()
         initial_memory = self._get_memory_usage()
@@ -239,6 +244,7 @@ class SortingAlgorithms:
                     self._incrementSwaps()
                     swapped = True
 
+    @memory_profiler.profile
     def shell(self, arr):
         self._clearCounters()
         initial_memory = self._get_memory_usage()
@@ -270,7 +276,7 @@ class SortingAlgorithms:
                 arr[j] = current_element
             gap //= 2
 
-
+    @memory_profiler.profile
     def lds(self, arr):
         self._clearCounters()
         initial_memory = self._get_memory_usage()
@@ -316,6 +322,7 @@ class SortingAlgorithms:
             arr[i] = aux[i]
             self._incrementIterations()
 
+    @memory_profiler.profile
     def mds(self, arr):
         self._clearCounters()
         initial_memory = self._get_memory_usage()
@@ -358,7 +365,7 @@ class SortingAlgorithms:
             arr[i] = aux[i]
             self._incrementIterations()
 
-
+    @memory_profiler.profile
     def insertion(self, arr):
         self._clearCounters()
         initial_memory = self._get_memory_usage()
@@ -383,7 +390,7 @@ class SortingAlgorithms:
 
         return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
-
+    @memory_profiler.profile
     def selection(self, arr):
         self._clearCounters()
         initial_memory = self._get_memory_usage()
@@ -432,6 +439,7 @@ class SortingAlgorithms:
             k += 1
             j += 1
 
+    @memory_profiler.profile
     def tim(self, arr):
         self._clearCounters()
         initial_memory = self._get_memory_usage()
@@ -475,7 +483,7 @@ class SortingAlgorithms:
                 self._incrementSwaps()
             arr[j + 1] = key
 
-
+    @memory_profiler.profile
     def cocktail(self, arr):
         self._clearCounters()
         initial_memory = self._get_memory_usage()
@@ -515,6 +523,7 @@ class SortingAlgorithms:
 
         return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
+    @memory_profiler.profile
     def gnome(self, arr):
         self._clearCounters()
         initial_memory = self._get_memory_usage()
@@ -541,6 +550,7 @@ class SortingAlgorithms:
 
         return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
+    @memory_profiler.profile
     def oddEven(self, arr):
         self._clearCounters()
         initial_memory = self._get_memory_usage()
@@ -573,7 +583,7 @@ class SortingAlgorithms:
 
         return self._returnArrayIfSorted(arr), memory_consumption, cpu_consumption
 
-    
+    @memory_profiler.profile
     def quick(self, arr, low=0, high=None):
         if high is None:
             high = len(arr) - 1
@@ -612,7 +622,7 @@ class SortingAlgorithms:
         self._incrementSwaps()
         return i + 1
 
-
+    @memory_profiler.profile
     def bitonic(self, arr):
         self._clearCounters()
         initial_memory = self._get_memory_usage()
