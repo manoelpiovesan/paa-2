@@ -19,17 +19,17 @@ Na aba "Projects" está o Kanban (trello) do trabalho.
 
 - [ ] Adicionar métodos de ordenação
     - [ ] Bitonic Sort
-    - [ ] Merge Sort
+    - [x] Merge Sort*
     - [x] Bubble Sort
-    - [ ] Insertion Sort
-    - [ ] Shell Sort
-    - [ ] Heap Sort
-    - [ ] Radix Sort (LSD)
-    - [ ] Radix Sort (MSD)
-    - [ ] Cocktail Sort
-    - [ ] Comb Sort
-    - [ ] Gnome Sort
-    - [ ] Odd-Even Sort
-    - [ ] Tim Sort
-    - [ ] Binary Insertion Sort
+    - [x] Insertion Sort*
+    - [x] Shell Sort*
+    - [x] Heap Sort*
+    - [x] Radix Sort (LSD)*
+    - [x] Radix Sort (MSD)*
+    - [x] Cocktail Sort*
+    - [x] Comb Sort*
+    - [x] Gnome Sort*
+    - [x] Odd-Even Sort*
+    - [x] Tim Sort*
+    - [x] Binary Insertion Sort*
     - [x] Selection Sort
