@@ -501,7 +501,6 @@ def generate_partial_ordered_end(n, ordered_portion=0.25):
 
 
 def run_sorting_algorithms(array):
-    print(f"Sorting array: {array}")
     results = {}
     algorithms = {
             'Binary Insertion Sort': binary_insertion_sort,
@@ -555,28 +554,20 @@ def start_sorting():
 
     if array_type == "Totalmente ordenado crescentemente":
         array = generate_sorted_array(array_size, ascending=True)
-        print(array)
     elif array_type == "Totalmente ordenado decrescentemente":
         array = generate_sorted_array(array_size, ascending=False)
-        print(array)
     elif array_type == "Totalmente aleatório desordenado":
         array = generate_random_array(array_size)
-        print(array)
     elif array_type == "50% ordenado do início ao meio, com o meio para o final aleatório":
         array = generate_partially_ordered_array(array_size, ordered_portion='start')
-        print(array)
     elif array_type == "50% ordenado do meio ao final, com o início até o meio aleatório":
         array = generate_partially_ordered_array(array_size, ordered_portion='end')
-        print(array)
     elif array_type == "25% ordenado apenas no início":
         array = generate_partial_ordered_start(array_size)
-        print(array)
     elif array_type == "25% ordenado no meio":
         array = generate_partial_ordered_middle(array_size)
-        print(array)
     elif array_type == "25% ordenado no final":
         array = generate_partial_ordered_end(array_size)
-        print(array)
 
     results, memory_consumed, cpu_consumed = run_sorting_algorithms(array)
 
@@ -584,9 +575,9 @@ def start_sorting():
     for algorithm_name, result in results.items():
         print(f"Algorithm: {algorithm_name}")
         print(f"Comparisons: {result['Comparisons']}")
-        print(f"Swaps: {result['Swaps']} \n\n")
+        print(f"Swaps: {result['Swaps']}")
         print(f"Total Memory Consumed: {memory_consumed} bytes")
-        print(f"Total CPU Consumed: {cpu_consumed}%")
+        print(f"Total CPU Consumed: {cpu_consumed}%  \n\n")
 
 
 
