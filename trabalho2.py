@@ -582,7 +582,7 @@ def start_sorting():
 
 
 def generate_all():
-    array_sizes = [int(array_size_var.get())]
+    array_sizes = ["100", "1000", "5000", "10000" ]
     array_types = [
         "Totalmente ordenado crescentemente",
         "Totalmente ordenado decrescentemente",
